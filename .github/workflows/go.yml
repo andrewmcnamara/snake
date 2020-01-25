@@ -1,4 +1,4 @@
-ame: Build and test Go
+name: Build and test Go
 on: [push, pull_request]
 jobs:
   build:
@@ -11,14 +11,14 @@ jobs:
           go-version: 1.13
 
       - name: Check out source code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Build
-              env:
-                  GOPROXY: "https://proxy.golang.org"
+        env:
+          GOPROXY: "https://proxy.golang.org"
         run: go build .
 
       - name: Test
-              env:
-                  GOPROXY: "https://proxy.golang.org"
+        env:
+          GOPROXY: "https://proxy.golang.org"
         run: go test -v .
