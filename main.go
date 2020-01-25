@@ -1,16 +1,15 @@
 package main
 
 import (
-  "fmt"
-  )
+	"fmt"
+)
 
 func main() {
-  snake :=&Snake{
-    Body: []Position {{X:10, Y:20}},
-    Direction: Left,
-  }
+	snake := &Snake{
+		Body:   []position{{X: 10, Y: 20}},
+		Facing: Left,
+	}
 
-
-  fmt.Println("Hello",snake)
+	fmt.Println("Hello", snake)
 
 }
