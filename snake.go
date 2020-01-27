@@ -1,5 +1,7 @@
 package main
+
 import "fmt"
+
 type Direction int
 
 const MaxLength = 5
@@ -25,7 +27,6 @@ func (d Direction) String() string {
 	return ""
 }
 
-
 type position struct {
 	X int
 	Y int
@@ -33,14 +34,14 @@ type position struct {
 
 // String returns the English name of the Direction
 func (p position) String() string {
-  return fmt.Sprintf("{X : %d , Y: %d}",p.X, p.Y)
+	return fmt.Sprintf("{X : %d , Y: %d}", p.X, p.Y)
 }
 func (p position) move(dx, dy int) position {
 
-    p.X= p.X + dx
-    p.Y = p.Y + dy
+	p.X = p.X + dx
+	p.Y = p.Y + dy
 
-    return p
+	return p
 }
 
 type Snake struct {
@@ -61,33 +62,32 @@ func (s *Snake) Rotate(direction Direction) {
 	}
 }
 
-func (s *Snake) Move()  {
-  var dx,dy int
-  //naive approach for now
-  if s.Facing == Left {
-      dx= -1
-  }
-  if s.Facing == Right {
-    dx= 1
-  }
-  if s.Facing == Up {
-    dy= -1
-  }
+func (s *Snake) Move() {
+	var dx, dy int
+	//naive approach for now
+	if s.Facing == Left {
+		dx = -1
+	}
+	if s.Facing == Right {
+		dx = 1
+	}
+	if s.Facing == Up {
+		dy = -1
+	}
 
-  if s.Facing == Down {
-    dy= 1
-  }
+	if s.Facing == Down {
+		dy = 1
+	}
 
-  var newHead = s.HeadPosition().move(dx, dy)
+	var newHead = s.HeadPosition().move(dx, dy)
 
-  s.Body= append([]position{newHead}, s.Body...)
+	s.Body = append([]position{newHead}, s.Body...)
 
-  if len(s.Body) > MaxLength {
-    s.Body = s.Body[:len(s.Body)-1]
-  }
+	if len(s.Body) > MaxLength {
+		s.Body = s.Body[:len(s.Body)-1]
+	}
 }
 
-
 func (s *Snake) HeadPosition() position {
-  return s.Body[0]
+	return s.Body[0]
 }
